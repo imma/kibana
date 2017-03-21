@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+function bootstrap {
+  local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
+  source "$shome/script/profile"
+  wget -O /tmp/kibana-${kibana_version}-linux-x64.tar.gz https://download.elastic.co/kibana/kibana/kibana-${kibana_version}-linux-x64.tar.gz
+  tar -zxf $shome/../kibana-${kibana_version}-linux-x64.tar.gz -C $shome/../
+  ln -nfs $shome/../kibana-${kibana_version}-linux-x64 /opt/kibana
+}
+
+bootstrap
